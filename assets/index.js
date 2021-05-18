@@ -1,16 +1,16 @@
 function setLocation(cid) {
-    $.getJSON("http://ip-api.com/json", function (data) {
+    $.getJSON(`https://ipgeolocation.abstractapi.com/v1/?api_key=${config.API_TOKEN}`, function (data) {
         $(".location").html(`
                 <div>Country: ${data.country}</div>
-                <div>State: ${data.regionName}</div>
+                <div>State: ${data.region}</div>
                 <div>City: ${data.city}</div>
-                <div>IP address: ${data.query}</div>
+                <div>IP address: ${data.ip_address}</div>
             `);
         var locationData = {
             country: data.country,
-            state: data.regionName,
+            state: data.region,
             city: data.city,
-            ip: data.query,
+            ip: data.ip_address,
         };
         $.ajax({
             url: `/set-location/${cid}`,
